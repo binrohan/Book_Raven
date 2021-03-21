@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Book_Raven.Models.Book>
+@{
+    ViewBag.Title = "Books";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+
+@if (!Model.Any())
+{
+    <p>Books are out of stock</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Books</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var b in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(b.Name, "Details", "Books", new { id = b.Id }, null)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

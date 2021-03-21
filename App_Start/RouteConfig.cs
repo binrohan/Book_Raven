@@ -13,12 +13,14 @@ namespace Book_Raven
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                "BookesByPublishedDate",
-                "books/published/{year}/{month}",
-                new { controller = "Books", action = "ByPublishedDate" },
-                new { year = @"\d{4}", month = @"\d{2}"}
-                );
+            routes.MapMvcAttributeRoutes();
+            
+            //routes.MapRoute(
+            //    "BookesByPublishedDate",
+            //    "books/published/{year}/{month}",
+            //    new { controller = "Books", action = "ByPublishedDate" },
+            //    new { year = @"\d{4}", month = @"\d{2}"}
+            //    );
 
             routes.MapRoute(
                 name: "Default",
