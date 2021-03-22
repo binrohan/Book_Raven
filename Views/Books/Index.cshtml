@@ -12,10 +12,11 @@
 }
 else
 {
-    <table>
+    <table id="books" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Books</th>
+                <th>Genre</th>
             </tr>
         </thead>
         <tbody>
@@ -23,6 +24,7 @@ else
             {
                 <tr>
                     <td>@Html.ActionLink(b.Name, "Details", "Books", new { id = b.Id }, null)</td>
+                    <td>@b.Genre.Name</td>
                 </tr>
             }
         </tbody>

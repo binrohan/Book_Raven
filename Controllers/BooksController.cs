@@ -2,6 +2,7 @@
 using Book_Raven.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure.MappingViews;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,17 @@ namespace Book_Raven.Controllers
     public class BooksController : Controller
     {
         // GET: Movies
+
+        private ApplicationDbContext _context;
+        public BooksController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
         public ActionResult Random()
         {
             var book = new Book() { Name = "Shrek!" };
@@ -44,14 +56,15 @@ namespace Book_Raven.Controllers
 
         public ActionResult Index()
         {
-            var books = GetBooks();
+            var books = _context.Books.Include(b => b.Genre).ToList();
 
             return View(books);
         }
 
         public ActionResult Details(int id)
         {
-            var book = GetBooks().FirstOrDefault(b => b.Id == id);
+            var book = _context.Books.Include(b => b.Genre).FirstOrDefault(b => b.Id == id);
+
             return View(book);
         }
     

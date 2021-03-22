@@ -201,10 +201,43 @@
     <Compile Include="Migrations\202103221437480_ApplyAnnotationsToCustomerName.Designer.cs">
       <DependentUpon>202103221437480_ApplyAnnotationsToCustomerName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103221512246_AddNameToMembershipType.cs" />
+    <Compile Include="Migrations\202103221512246_AddNameToMembershipType.Designer.cs">
+      <DependentUpon>202103221512246_AddNameToMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103221513528_UpdateMembershipTypeWithName.cs" />
+    <Compile Include="Migrations\202103221513528_UpdateMembershipTypeWithName.Designer.cs">
+      <DependentUpon>202103221513528_UpdateMembershipTypeWithName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103221602033_AddBirthDateTOCustomer.cs" />
+    <Compile Include="Migrations\202103221602033_AddBirthDateTOCustomer.Designer.cs">
+      <DependentUpon>202103221602033_AddBirthDateTOCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103221631040_AddGenreToBook.cs" />
+    <Compile Include="Migrations\202103221631040_AddGenreToBook.Designer.cs">
+      <DependentUpon>202103221631040_AddGenreToBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103221631550_PopulateGenre.cs" />
+    <Compile Include="Migrations\202103221631550_PopulateGenre.Designer.cs">
+      <DependentUpon>202103221631550_PopulateGenre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103221647525_AddStockNumberAddDatePublishDateToBook.cs" />
+    <Compile Include="Migrations\202103221647525_AddStockNumberAddDatePublishDateToBook.Designer.cs">
+      <DependentUpon>202103221647525_AddStockNumberAddDatePublishDateToBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103221648435_AddStockNumberAddDatePublishDateToBook1.cs" />
+    <Compile Include="Migrations\202103221648435_AddStockNumberAddDatePublishDateToBook1.Designer.cs">
+      <DependentUpon>202103221648435_AddStockNumberAddDatePublishDateToBook1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103221651127_AddStockNumberAddDatePublishDateToBook2.cs" />
+    <Compile Include="Migrations\202103221651127_AddStockNumberAddDatePublishDateToBook2.Designer.cs">
+      <DependentUpon>202103221651127_AddStockNumberAddDatePublishDateToBook2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -411,6 +444,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103221437480_ApplyAnnotationsToCustomerName.resx">
       <DependentUpon>202103221437480_ApplyAnnotationsToCustomerName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103221512246_AddNameToMembershipType.resx">
+      <DependentUpon>202103221512246_AddNameToMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103221513528_UpdateMembershipTypeWithName.resx">
+      <DependentUpon>202103221513528_UpdateMembershipTypeWithName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103221602033_AddBirthDateTOCustomer.resx">
+      <DependentUpon>202103221602033_AddBirthDateTOCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103221631040_AddGenreToBook.resx">
+      <DependentUpon>202103221631040_AddGenreToBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103221631550_PopulateGenre.resx">
+      <DependentUpon>202103221631550_PopulateGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103221647525_AddStockNumberAddDatePublishDateToBook.resx">
+      <DependentUpon>202103221647525_AddStockNumberAddDatePublishDateToBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103221648435_AddStockNumberAddDatePublishDateToBook1.resx">
+      <DependentUpon>202103221648435_AddStockNumberAddDatePublishDateToBook1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103221651127_AddStockNumberAddDatePublishDateToBook2.resx">
+      <DependentUpon>202103221651127_AddStockNumberAddDatePublishDateToBook2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
