@@ -1,5 +1,6 @@
 ﻿using Book_Raven.Models;
 using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,10 +11,19 @@ namespace Book_Raven.Controllers
     public class CustomersController : Controller
     {
         // GET: Customers
-        
+        private ApplicationDbContext _context;
+        public CustomersController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
         public ActionResult Index()
         {
-            var customers = GetCustomers();
+            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
 
 
             return View(customers);
@@ -21,21 +31,12 @@ namespace Book_Raven.Controllers
 
         public ActionResult Details(int id)
         {
-            Customer customer = GetCustomers().SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customers.ToList().SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
                 return HttpNotFound();
 
             return View(customer);
-        }
-
-        private IEnumerable<Customer> GetCustomers()
-        {
-            return new List<Customer>
-            {
-                new Customer { Id = 1, Name = "Bruce Wayne" },
-                new Customer { Id = 2, Name = "Cark Kent" }
-            };
         }
     }
 }
