@@ -49,9 +49,52 @@ namespace Book_Raven.Controllers
             //return View();
         }
 
+        public ActionResult New()
+        {
+            var genres = _context.Genres.ToList();
+            var viewModel = new BookFormViewModel
+            {
+                Genres = genres
+            };
+
+            return View("BookForm", viewModel);
+        }
+        
+        [HttpPost]
+        public ActionResult Save(Book book)
+        {
+            if (book.Id == 0)
+            {
+                book.AddedDate = DateTime.Now;
+                _context.Books.Add(book);
+            }
+            else
+            {
+                var bookInDb = _context.Books.Single(b => b.Id == book.Id);
+                bookInDb.Name = book.Name;
+                bookInDb.PublisheDate = book.PublisheDate;
+                bookInDb.GenreId = book.GenreId;
+                bookInDb.NumberInStock = book.NumberInStock;
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Books");
+        }
         public ActionResult Edit(int id)
         {
-            return Content("id = " + id);
+            var book = _context.Books.SingleOrDefault(b => b.Id == id);
+
+            if (book == null)
+                return HttpNotFound();
+
+            var viewModel = new BookFormViewModel
+            {
+                Book = book,
+                Genres = _context.Genres.ToList()
+            };
+
+            return View("BookForm", viewModel);
         }
 
         public ActionResult Index()
