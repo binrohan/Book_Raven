@@ -236,13 +236,14 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Book.cs" />
-    <Compile Include="Models\BookFormViewModel.cs" />
+    <Compile Include="Models\Min18YearsIfAMember.cs" />
+    <Compile Include="ViewModels\BookFormViewModel.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
-    <Compile Include="Models\CustomerFormViewModel.cs" />
+    <Compile Include="ViewModels\CustomerFormViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\RamdomBookViewModel.cs" />
