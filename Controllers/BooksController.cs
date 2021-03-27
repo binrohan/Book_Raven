@@ -63,6 +63,16 @@ namespace Book_Raven.Controllers
         [HttpPost]
         public ActionResult Save(Book book)
         {
+            if(!ModelState.IsValid)
+            {
+                var viewModel = new BookFormViewModel(book)
+                {
+                    Genres = _context.Genres.ToList()
+                };
+
+                return View("BookForm", viewModel);
+            }
+
             if (book.Id == 0)
             {
                 book.AddedDate = DateTime.Now;
@@ -88,9 +98,8 @@ namespace Book_Raven.Controllers
             if (book == null)
                 return HttpNotFound();
 
-            var viewModel = new BookFormViewModel
+            var viewModel = new BookFormViewModel(book)
             {
-                Book = book,
                 Genres = _context.Genres.ToList()
             };
 

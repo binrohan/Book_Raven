@@ -1,30 +1,40 @@
 ﻿@model Book_Raven.Models.BookFormViewModel
 @{
-    ViewBag.Title = Model.Book == null? "New":"Update";
+    ViewBag.Title = Model.Book.Id == 0 ? "New" : "Update";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <h2>@(Model.Book == null? "ADD BOOK":"EDIT BOOK")</h2>
+<h2>@(Model.Book.Id == 0 ? "ADD BOOK" : "EDIT BOOK")</h2>
 
 @using (Html.BeginForm("Save", "Books"))
 {
+    @Html.ValidationSummary(true, "Fix the following problem.")
     <div class="form-group">
         @Html.LabelFor(m => m.Book.Name)
         @Html.TextBoxFor(m => m.Book.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Book.Name)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Book.PublisheDate)
         @Html.TextBoxFor(m => m.Book.PublisheDate, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Book.PublisheDate)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Book.GenreId)
         @Html.DropDownListFor(m => m.Book.GenreId, new SelectList(Model.Genres, "Id", "Name"), "Select Genre", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Book.GenreId)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Book.NumberInStock)
         @Html.TextBoxFor(m => m.Book.NumberInStock, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Book.NumberInStock)
     </div>
+    @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.Book.Id)
     <button type="submit" class="btn btn-primary">Save</button>
 }
 
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval");
+}
