@@ -108,9 +108,9 @@ namespace Book_Raven.Controllers
 
         public ActionResult Index()
         {
-            var books = _context.Books.Include(b => b.Genre).ToList();
+            // var books = _context.Books.Include(b => b.Genre).ToList();
 
-            return View(books);
+            return View();
         }
 
         public ActionResult Details(int id)

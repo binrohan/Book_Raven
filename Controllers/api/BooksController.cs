@@ -2,6 +2,7 @@
 using Book_Raven.Dtos;
 using Book_Raven.Models;
 using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -21,7 +22,7 @@ namespace Book_Raven.Controllers.api
         [HttpGet]
         public IHttpActionResult GetBooks()
         {
-            return Ok(_context.Books.ToList().Select(Mapper.Map<Book, BookDto>));
+            return Ok(_context.Books.Include(b => b.Genre).ToList().Select(Mapper.Map<Book, BookDto>));
         }
 
         [HttpGet]
