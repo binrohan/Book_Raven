@@ -15,15 +15,20 @@ namespace Book_Raven.Controllers
         // GET: Movies
 
         private ApplicationDbContext _context;
+        
+        
         public BooksController()
         {
             _context = new ApplicationDbContext();
         }
 
+
         protected override void Dispose(bool disposing)
         {
             _context.Dispose();
         }
+        
+        
         public ActionResult Random()
         {
             var book = new Book() { Name = "Shrek!" };
@@ -49,6 +54,7 @@ namespace Book_Raven.Controllers
             //return View();
         }
 
+        [Authorize(Roles = RoleName.CanManageBooks)]
         public ActionResult New()
         {
             var genres = _context.Genres.ToList();
@@ -60,7 +66,9 @@ namespace Book_Raven.Controllers
             return View("BookForm", viewModel);
         }
         
+
         [HttpPost]
+        [Authorize(Roles = RoleName.CanManageBooks)]
         public ActionResult Save(Book book)
         {
             if(!ModelState.IsValid)
@@ -91,6 +99,8 @@ namespace Book_Raven.Controllers
 
             return RedirectToAction("Index", "Books");
         }
+
+        [Authorize(Roles = RoleName.CanManageBooks)]
         public ActionResult Edit(int id)
         {
             var book = _context.Books.SingleOrDefault(b => b.Id == id);
@@ -106,12 +116,16 @@ namespace Book_Raven.Controllers
             return View("BookForm", viewModel);
         }
 
+
         public ActionResult Index()
         {
-            // var books = _context.Books.Include(b => b.Genre).ToList();
+            
+            if(User.IsInRole(RoleName.CanManageBooks))
+                return View("List");
 
-            return View();
+            return View("ReadOnlyList");
         }
+
 
         public ActionResult Details(int id)
         {
@@ -120,11 +134,13 @@ namespace Book_Raven.Controllers
             return View(book);
         }
     
+
         [Route("books/published/{year:regex(\\d{4})}/{month:regex(\\d{2}):range(1, 12)}")]
         public ActionResult ByPublishedDate(int year, byte month)
         {
             return Content(year + " / " + month);
         }
+
 
         private IEnumerable<Book> GetBooks()
         {

@@ -1,0 +1,59 @@
+﻿@*@model IEnumerable<Book_Raven.Models.Book>*@
+@{
+    ViewBag.Title = "Books";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Books</h2>
+
+@*@if (!Model.Any())
+    {
+        <p>Books are out of stock</p>
+    }
+    else
+    {*@
+<table id="books" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Books</th>
+            <th>Genre</th>
+        </tr>
+    </thead>
+    <tbody>
+        @*@foreach (var b in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(b.Name, "Edit", "Books", new { id = b.Id }, null)</td>
+                    <td>@b.Genre.Name</td>
+                </tr>
+            }*@
+    </tbody>
+</table>
+@* } *@
+
+@section scripts
+{
+    <script>
+        // Variables
+        let table;
+
+        $(document).ready(function () {
+            table = $("#books").DataTable({
+                ajax: {
+                    url: "/api/books",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                    },
+                    {
+                        data: "genre.name"
+                    }
+                ]
+            });
+        });  
+    </script>
+}
+
+

@@ -34,6 +34,7 @@ namespace Book_Raven.Controllers.api
         }
 
         [HttpPost]
+        [Authorize(Roles = RoleName.CanManageBooks)]
         public IHttpActionResult AddBook(BookDto bookDto)
         {
             if (!ModelState.IsValid)
@@ -50,6 +51,7 @@ namespace Book_Raven.Controllers.api
         }
 
         [HttpPut]
+        [Authorize(Roles = RoleName.CanManageBooks)]
         public IHttpActionResult EditBook(int id, BookDto bookDto)
         {
             if (!ModelState.IsValid)
@@ -68,6 +70,7 @@ namespace Book_Raven.Controllers.api
         }
 
         [HttpDelete]
+        [Authorize(Roles = RoleName.CanManageBooks)]
         public IHttpActionResult DeleteBook(int id)
         {
             var bookInDb = _context.Books.SingleOrDefault(b => b.Id == id);

@@ -54,9 +54,9 @@ namespace Book_Raven
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "4465243460171730",
+               appSecret: "ba798fd9ffebe9136d75381df2ea60d2");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

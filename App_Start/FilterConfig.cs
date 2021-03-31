@@ -8,6 +8,9 @@ namespace Book_Raven
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new AuthorizeAttribute());
+            // This filter ensure the web app is not accessable from non secure channel
+            filters.Add(new RequireHttpsAttribute());
         }
     }
 }

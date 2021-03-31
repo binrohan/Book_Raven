@@ -4,4 +4,4 @@ bin/
 obj/
 TestResults/
 .vs
-*.mdf
+.mdf
