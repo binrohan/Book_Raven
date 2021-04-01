@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace Book_Raven.Controllers
 {
     [AllowAnonymous]
     public class HomeController : Controller
     {
+        [OutputCache(Duration = 50, Location = OutputCacheLocation.Server, VaryByParam = "")]
         public ActionResult Index()
         {
             return View();
@@ -27,5 +29,19 @@ namespace Book_Raven.Controllers
 
             return View();
         }
+
+        //// Data chaching
+        //// Need to add reference for MemoryCache
+        //public ViewResult Index()
+        //{
+        //    if(MemoryCache.Default["Genres"] == null)
+        //    {
+        //        MemoryCache.Default["Genres"] = _context.Genres.ToList();
+        //    }
+
+        //    var genres = MemoryCache.Default["Genres"] as IEnumerable<Genre>;
+
+        //    return View();
+        //}
     }
 }
