@@ -20,12 +20,19 @@ namespace Book_Raven.Controllers.api
         }
         // GET /api/customers
         [HttpGet]
-        public IEnumerable<CustomerDto> GetCustomers()
+        public IHttpActionResult GetCustomers(string query = null)
         {
-            return _context.Customers
-                .Include(c => c.MembershipType)
-                .ToList()
-                .Select(Mapper.Map<Customer, CustomerDto>);
+            var customersQuery = _context.Customers
+                                .Include(c => c.MembershipType);
+
+            if (!string.IsNullOrEmpty(query))
+                customersQuery = customersQuery.Where(c => c.Name.Contains(query));
+            
+            var customerDtos = customersQuery
+                              .ToList()
+                              .Select(Mapper.Map<Customer, CustomerDto>);
+            
+            return Ok(customerDtos);
         }
 
         // GET /api/customers/1

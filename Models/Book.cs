@@ -31,5 +31,8 @@ namespace Book_Raven.Models
         [Required]
         [Display(Name="Genre")]
         public byte GenreId { get; set; }
+
+        public int NumberAvailable { get; set; }
+
     }
 }

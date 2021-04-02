@@ -20,9 +20,20 @@ namespace Book_Raven.Controllers.api
         }
 
         [HttpGet]
-        public IHttpActionResult GetBooks()
+        public IHttpActionResult GetBooks(string query = null)
         {
-            return Ok(_context.Books.Include(b => b.Genre).ToList().Select(Mapper.Map<Book, BookDto>));
+            var booksQuery = _context.Books
+                            .Include(b => b.Genre)
+                            .Where(b => b.NumberAvailable > 0);
+
+            if (!string.IsNullOrEmpty(query))
+                booksQuery = booksQuery.Where(b => b.Name.Contains(query));
+
+            var bookDtos = booksQuery
+                           .ToList()
+                           .Select(Mapper.Map<Book, BookDto>);
+
+            return Ok(bookDtos);
         }
 
         [HttpGet]
