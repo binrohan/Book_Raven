@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using Book_Raven.Models;
+using System.Configuration;
 
 namespace Book_Raven
 {
@@ -55,8 +56,8 @@ namespace Book_Raven
             //   consumerSecret: "");
 
             app.UseFacebookAuthentication(
-               appId: "4465243460171730",
-               appSecret: "ba798fd9ffebe9136d75381df2ea60d2");
+               appId: ConfigurationManager.AppSettings["FacebookAppId"],
+               appSecret: ConfigurationManager.AppSettings["FacebookAppSecret"]);
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

@@ -32,6 +32,7 @@ namespace Book_Raven
                                       "~/Content/datatables/css/datatables.bootstrap4.css",
                                       "~/Content/typeahead.css",
                                       "~/Content/toastr.css",
+                                      "~/Content/bootstrap-theme.css",
                                       "~/Content/site.css"));
         }
     }
